@@ -1,4 +1,6 @@
 .venv/
 backend/.flaskenv
 *.db
-backend/weather.db
+backend/gloves.db
+backend/trained/dexterity.pkl
+backend/trained/frostbite.pkl
