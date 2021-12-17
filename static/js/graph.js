@@ -1,7 +1,7 @@
 window.onload = async function() {
     var $table = $('#table');
 
-    let mydata = await fetch("http://127.0.0.1:5000/all_data")
+    let mydata = await fetch("https://nexgenquick.uc.r.appspot.com/all_data")
         .then(response => response.json())
 
     $(function () {
