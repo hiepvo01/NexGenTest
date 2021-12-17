@@ -25,12 +25,12 @@ def all_data():
     result = cases_schema.dump(cases_list)
     return jsonify(result)
     
-@app.route('/url_variables/<string:name>/<int:age>')
-def url_variables(name: str, age: int):
-    if age < 18:
-        return jsonify(message= "Sorry " + name + ", You are not old enough")
-    else:
-        return jsonify(message= name + ", You are old enough")
+# @app.route('/url_variables/<string:name>/<int:age>')
+# def url_variables(name: str, age: int):
+#     if age < 18:
+#         return jsonify(message= "Sorry " + name + ", You are not old enough")
+#     else:
+#         return jsonify(message= name + ", You are old enough")
     
     
 """ Database Config """
