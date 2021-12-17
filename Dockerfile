@@ -1,21 +1,13 @@
-# Use the official lightweight Python image.
-# https://hub.docker.com/_/python
-FROM python:3.10-slim
-
-# Allow statements and log messages to immediately appear in the Knative logs
-ENV PYTHONUNBUFFERED True
-
-# Copy local code to the container image.
-ENV APP_HOME /backend/app
-WORKDIR $APP_HOME
-COPY . ./
-
-# Install production dependencies.
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Run the web service on container startup. Here we use the gunicorn
-# webserver, with one worker process and 8 threads.
-# For environments with multiple CPU cores, increase the number of workers
-# to be equal to the cores available.
-# Timeout is set to 0 to disable the timeouts of the workers to allow Cloud Run to handle instance scaling.
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
+# Use Python38
+FROM python:3.8
+# Copy requirements.txt to the docker image and install packages
+COPY requirements.txt /
+RUN pip install -r requirements.txt
+# Set the WORKDIR to be the folder
+COPY . /app
+# Expose port 5000
+EXPOSE 5000
+ENV PORT 5000
+WORKDIR /app
+# Use gunicorn as the entrypoint
+CMD exec gunicorn --bind :$PORT backend/app:app --workers 1 --threads 1 --timeout 60
