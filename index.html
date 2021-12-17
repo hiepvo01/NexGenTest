@@ -1,20 +1,152 @@
 <html>
   <head>
     <link rel="stylesheet" href="static/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css" crossorigin="anonymous">
     <script src="static/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="profile.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+      <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="static/js/main.js"></script>
   </head>
   <body>
     <h1>NexGenPPE Demo Interface</h1>
     <!-- <iframe src="https://hiepvo01.github.io/CS330_Final/" width=100% height=80%>
     </iframe> -->
 
+    <div class="container">
+      <h1 class="text text-danger text-center ">
+        Glove Project
+      </h1>
+      <h6 class="text text-center">
+        Test weather and gloves data
+      </h6>
+        <div class="container network_wrapper col-sm p-2 ">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Glove prediction app</h5>
+                    <ul class="nav nav-tabs card-header-tabs" data-bs-tabs="tabs">
+                        <li class="nav-item">
+                            <a class="nav-link  active" aria-current="true" data-bs-toggle="tab" href="#Interface">Interface</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#Visualizations">Visualizations</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="tab" href="#DataTable">DataTable</a>
+                      </li>
+                    </ul>
+                </div>
+                <form class="card-body tab-content">
+                    <div class="tab-pane active" id="Interface">
+                      <div class="container-fluid">
+                        <h5>Environment</h3>
+                        <div class="row">
+                          <div class="col-2"><p>Temperature:</p></div>
+                          <div class="col-3"><input type="range" class="form-range" value="-20" min="-20" max="40" oninput="tempVal(this.value)"></div>
+                          <div class="col-2"><p id="temp">-20 Celcius</p></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-2"><p>Humidity:</p></div>
+                          <div class="col-3"><input type="range" class="form-range" value="15" min="15" max="75" oninput="tempHum(this.value)"></div>
+                          <div class="col-2"><p id="humid">15 %</p></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-2"><p>Wind Speed:</p></div>
+                          <div class="col-3"><input type="range" class="form-range" value="1" min="1" max="6" oninput="tempSpd(this.value)"></div>
+                          <div class="col-2"><p id="spd">1 m/ss</p></div>
+                        </div>
+
+                        <h5>Activity</h3>
+                          <div class="row">
+                            <div class="col-2"><div class="form-check">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                              <label class="form-check-label" for="flexRadioDefault1">
+                                Active
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                              <label class="form-check-label" for="flexRadioDefault2">
+                                Rest
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-3"><input type="range" class="form-range" value="0" min="0" max="20" oninput="tempHour(this.value)"></div>
+                          <div class="col-2"><p id="hour">0 hours</p></div>
+                          
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="Visualizations">
+                        <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-6">
+                        <canvas id="chart1"></canvas>
+                      </div>
+                      <div class="col-6">
+                        <canvas id="chart2"></canvas>
+                      </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-12">
+                          <canvas id="chart4"></canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                          <canvas id="chart5"></canvas>
+                        </div>
+                        <div class="col-6">
+                          <canvas id="chart6"></canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                        <canvas id="chart7"></canvas>
+                        </div>
+                        <div class="col-6">
+                        <canvas id="chart8"></canvas>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="tab-pane" id="DataTable">
+                      <table class="table-striped border-success" id="table">
+                        <thead>
+                          <tr>
+                              <th data-field="air_temp">air_temp</th>
+                              <th data-field="humidity">humidity</th>
+                              <th data-field="wind_speed">wind_speed</th>
+                              <th data-field="active">active</th>
+                              <th data-field="rest">rest</th>
+                              <th data-field="glove">glove</th>
+                              <th data-field="clo">clo</th>
+                              <th data-field="dexterity_loss">dexterity_loss</th>
+                              <th data-field="frostbite">frostbite</th>
+                          </tr>
+                      </thead>
+                      </table>
+                  </div>
+                </form>
+            </div>
+        </div>
+
+        
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js"></script>
 </body>
 </html>
