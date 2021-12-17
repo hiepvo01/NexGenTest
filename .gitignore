@@ -1,6 +1,6 @@
 .venv/
 backend/.flaskenv
-*.db
-backend/gloves.db
-backend/trained/dexterity.pkl
-backend/trained/frostbite.pkl
+# *.db
+# backend/gloves.db
+# backend/trained/dexterity.pkl
+# backend/trained/frostbite.pkl
