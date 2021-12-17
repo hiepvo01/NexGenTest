@@ -34,9 +34,9 @@
                         <li class="nav-item">
                             <a class="nav-link  active" aria-current="true" data-bs-toggle="tab" href="#Interface">Interface</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#Visualizations">Visualizations</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                           <a class="nav-link" data-bs-toggle="tab" href="#DataTable">DataTable</a>
                       </li>
@@ -45,46 +45,83 @@
                 <form class="card-body tab-content">
                     <div class="tab-pane active" id="Interface">
                       <div class="container-fluid">
-                        <h5>Environment</h3>
-                        <div class="row">
-                          <div class="col-2"><p>Temperature:</p></div>
-                          <div class="col-3"><input type="range" class="form-range" value="-20" min="-20" max="40" oninput="tempVal(this.value)"></div>
-                          <div class="col-2"><p id="temp">-20 Celcius</p></div>
-                        </div>
-                        <div class="row">
-                          <div class="col-2"><p>Humidity:</p></div>
-                          <div class="col-3"><input type="range" class="form-range" value="15" min="15" max="75" oninput="tempHum(this.value)"></div>
-                          <div class="col-2"><p id="humid">15 %</p></div>
-                        </div>
-                        <div class="row">
-                          <div class="col-2"><p>Wind Speed:</p></div>
-                          <div class="col-3"><input type="range" class="form-range" value="1" min="1" max="6" oninput="tempSpd(this.value)"></div>
-                          <div class="col-2"><p id="spd">1 m/ss</p></div>
-                        </div>
-
-                        <h5>Activity</h3>
                           <div class="row">
-                            <div class="col-2"><div class="form-check">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                              <label class="form-check-label" for="flexRadioDefault1">
-                                Active
-                              </label>
+                            <div class="col-lg-6">
+                              <h5>Environment</h3>
+                              <div class="row">
+                                <div class="col-3"><p>Temperature:</p></div>
+                                <div class="col-3"><input type="range" class="form-range" value="-20" min="-20" max="40" oninput="tempVal(this.value)"></div>
+                                <div class="col-2"><p id="temp">-20 Celcius</p></div>
+        
+                              </div>
+                              <div class="row">
+                                <div class="col-3"><p>Humidity:</p></div>
+                                <div class="col-3"><input type="range" class="form-range" value="15" min="15" max="75" oninput="tempHum(this.value)"></div>
+                                <div class="col-2"><p id="humid">15 %</p></div>
+                              </div>
+                              <div class="row">
+                                <div class="col-3"><p>Wind Speed:</p></div>
+                                <div class="col-3"><input type="range" class="form-range" value="1" min="1" max="6" oninput="tempSpd(this.value)"></div>
+                                <div class="col-2"><p id="spd">1 m/ss</p></div>
+                              </div>
+      
+                              <h5>Activity</h3>
+                                <div class="row">
+                                  <div class="col-3"><div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Active
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" style="margin-bottom: 20px;">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                      Rest
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-3"><input type="range" class="form-range" value="0" min="0" max="20" oninput="tempHour(this.value)"></div>
+                                <div class="col-2"><p id="hour">0 hours</p></div>
+                                
+                                </div>
                             </div>
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                              <label class="form-check-label" for="flexRadioDefault2">
-                                Rest
-                              </label>
+                            <div class="col-lg-6">
+                              <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-4">
+                                  <button style="width: 100%;" class="btn btn-secondary dropdown-toggle" id="glove_choice" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Glove 1
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" onclick="glove('Glove 1')">Glove 1</a></li>
+                                    <li><a class="dropdown-item" onclick="glove('Glove 2')">Glove 2</a></li>
+                                    <li><a class="dropdown-item" onclick="glove('Glove 3')">Glove 3</a></li>
+                                    <li><a class="dropdown-item" onclick="glove('Glove 4')">Glove 4</a></li>
+                                  </ul>
+                                </div>
+                                
+                              </div>
+
+                              <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-4">
+                                  <img src="pictures/gloves/glove1.jpg" id="glove_image" class="rounded d-block" alt="glove1">
+                                </div>
+                                
+                              </div>
                             </div>
-                          </div>
-                          <div class="col-3"><input type="range" class="form-range" value="0" min="0" max="20" oninput="tempHour(this.value)"></div>
-                          <div class="col-2"><p id="hour">0 hours</p></div>
+                          </div>           
                           
+                          <div class="row">
+                            <div class="col-lg-4">
+                              <button type="button" class="btn btn-success">Get Result</button>
+                            </div>
+                            
                           </div>
                       </div>
                     </div>
 
-                    <div class="tab-pane" id="Visualizations">
+                    <!-- <div class="tab-pane" id="Visualizations">
                         <div class="container-fluid">
                     <div class="row">
                       <div class="col-6">
@@ -117,7 +154,7 @@
                         </div>
                     </div>
                 </div>
-                    </div>
+                    </div> -->
                     <div class="tab-pane" id="DataTable">
                       <table class="table-striped border-success" id="table">
                         <thead>
