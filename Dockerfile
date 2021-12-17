@@ -10,4 +10,4 @@ EXPOSE 5000
 ENV PORT 5000
 WORKDIR /app
 # Use gunicorn as the entrypoint
-CMD exec gunicorn --bind :$PORT backend/app:app --workers 1 --threads 1 --timeout 60
+CMD exec gunicorn --bind :$PORT backend.app:app --workers 1 --threads 1 --timeout 60
