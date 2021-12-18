@@ -11,6 +11,8 @@ window.onload = async function() {
         $('#table').DataTable();
     });
 
+    // console.log(mydata)
+
     ChartBar(mydata, 'chart1');
     ChartPie(mydata, 'chart2');
     BubbleChart(mydata, 'air_temp', 'wind_speed', 'frostbite', 'chart4');

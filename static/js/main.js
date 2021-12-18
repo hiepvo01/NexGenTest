@@ -1,17 +1,60 @@
+var glove_choice = 0;
+
+function getData() {
+    var url = "https://nexgenfinal.uc.r.appspot.com/predict";
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+        console.log(xhr.status);
+        console.log(xhr.responseText);
+    }};
+
+    let temp = document.getElementById('temp').innerHTML.split(" ")[0]
+    let humid = document.getElementById('temp').innerHTML.split(" ")[0]
+    let spd = document.getElementById('temp').innerHTML.split(" ")[0]
+    let hour = document.getElementById('hour').innerHTML.split(" ")[0]
+
+    let active = 0;
+
+    if(document.getElementById('flexRadioDefault1').checked) {
+        active = 1;
+    }
+
+    var data = {
+        "air_temp": temp,
+        "humidity": humid,
+        "wind_speed": spd,
+        "active": active,
+        "hours": hour,
+        "glove": glove_choice
+    
+    };
+    xhr.send(JSON.stringify(data));
+}
+
 function glove(name) {
     document.getElementById('glove_choice').innerHTML = name;
     if(name == "Glove 1"){
         var Image_Id = document.getElementById('glove_image');
         Image_Id.src = "pictures/gloves/glove1.jpg"
+        glove_choice = 0;
     } else if(name == "Glove 2"){
         var Image_Id = document.getElementById('glove_image');
         Image_Id.src = "pictures/gloves/glove2.jpg"
+        glove_choice = 1;
     } else if(name == "Glove 3"){
         var Image_Id = document.getElementById('glove_image');
         Image_Id.src = "pictures/gloves/glove3.jpg"
+        glove_choice = 2;
     } else if(name == "Glove 4"){
         var Image_Id = document.getElementById('glove_image');
         Image_Id.src = "pictures/gloves/glove4.jpg"
+        glove_choice = 3;
     }
 }
 
