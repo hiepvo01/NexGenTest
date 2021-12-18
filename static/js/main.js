@@ -10,8 +10,10 @@ function getData() {
 
     xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
-        console.log(xhr.status);
-        console.log(xhr.responseText);
+        result = JSON.parse(xhr.responseText)
+        document.getElementById("dexterity_result").innerHTML = result.dexterity.toFixed(3) + " hours";
+        document.getElementById("frostbite_result").innerHTML = result.frostbite.toFixed(3) + " hours";
+        console.log(xhr.responseText)
     }};
 
     let temp = document.getElementById('temp').innerHTML.split(" ")[0]
