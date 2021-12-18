@@ -51,6 +51,8 @@ def predict():
         dexterity = model1.predict(np.array([[air_temp, humidity, wind_speed, active, hours, clo]]))
         frostbite = model2.predict(np.array([[air_temp, humidity, wind_speed, active, hours, clo]]))
         
+        return jsonify(dexterity=dexterity[0], frostbite=frostbite[0])
+        
     return jsonify(dexterity=dexterity[0], frostbite=frostbite[0])
     
 # @app.route('/url_variables/<string:name>/<int:age>')
