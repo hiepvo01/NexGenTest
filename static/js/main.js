@@ -1,7 +1,7 @@
 var glove_choice = 0;
 
 function getData() {
-    var url = "https://nexgenfinal.uc.r.appspot.com/predict";
+    var url = "https://nexgen1.herokuapp.com/predict";
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url);
 
