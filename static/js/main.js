@@ -1,6 +1,13 @@
 var glove_choice = 0;
 
 function getData() {
+    const loading = document.createElement("div");
+    loading.setAttribute("id", "loading");
+    loading.setAttribute("class", "spinner-border text-primary");
+    loading.setAttribute("role", "status");
+    block = document.getElementById("result_button")
+    block.appendChild(loading)
+
     var url = "https://nexgen1.herokuapp.com/predict";
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -14,6 +21,7 @@ function getData() {
         document.getElementById("dexterity_result").innerHTML = result.dexterity.toFixed(3) + " hours";
         document.getElementById("frostbite_result").innerHTML = result.frostbite.toFixed(3) + " hours";
         console.log(xhr.responseText)
+        loading.remove();
     }};
 
     let temp = document.getElementById('temp').innerHTML.split(" ")[0]
