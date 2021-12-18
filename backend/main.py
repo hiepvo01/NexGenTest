@@ -29,7 +29,7 @@ def all_data():
     result = cases_schema.dump(cases_list)
     return jsonify(result)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET','POST'])
 def predict(): 
     dexterity = [0]
     frostbite = [0]
