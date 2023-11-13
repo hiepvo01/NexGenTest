@@ -45,8 +45,8 @@ def predict():
     
         print(air_temp)
         
-        model1 = pickle.load(open('backend/trained/dexterity.pkl', 'rb'))
-        model2 = pickle.load(open('backend/trained/frostbite.pkl', 'rb'))
+        model1 = pickle.load(open('trained/dexterity.pkl', 'rb'))
+        model2 = pickle.load(open('trained/frostbite.pkl', 'rb'))
         
         dexterity = model1.predict(np.array([[air_temp, humidity, wind_speed, active, hours, clo]]))
         frostbite = model2.predict(np.array([[air_temp, humidity, wind_speed, active, hours, clo]]))

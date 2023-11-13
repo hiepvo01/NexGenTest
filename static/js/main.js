@@ -8,7 +8,7 @@ function getData() {
     block = document.getElementById("result_button")
     block.appendChild(loading)
 
-    var url = "https://nexgen1.herokuapp.com/predict";
+    var url = "http://127.0.0.1:5000/predict";
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url);
 
