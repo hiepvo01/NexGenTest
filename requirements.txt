@@ -34,4 +34,4 @@ threadpoolctl
 urllib3
 websocket-client
 Werkzeug
-sqlite-devel
+libsqlite3-dev
